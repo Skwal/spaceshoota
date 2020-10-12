@@ -1,16 +1,24 @@
 TODO:
+- name the project
 code:
-- setup git repo
-- enemy moving towards the player
-- UI (score & HP)
 - spawn enemies randomly (with random movement types)
+- money
+- enemy moving towards the player
 - homing missiles
 - meteorites
 - sound effects
 - explosion on hit
+- drops (powerups)
 
 art:
 - explosion animation
+
+
+DAY 4
+code:
+- setup git repo
+- UI (score & HP)
+- GameState
 
 
 DAY 3

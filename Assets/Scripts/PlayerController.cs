@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,16 +15,24 @@ public class PlayerController : MonoBehaviour
     public float playerHealth = 3;
 
     public GameObject projectilePrefab;
+    GameState gameState;
+
+
+    public Text UIHealthText;
 
     private void Start()
     {
         projectilePrefab.layer = 8;
+        if (gameState == null)
+            gameState = GameObject.FindObjectOfType<GameState>();
     }
 
     void Update()
     {
         MoveShip();
         Shoot();
+
+        UIHealthText.text = "Health: " + playerHealth.ToString();
 
         if (playerHealth <= 0)
         {
