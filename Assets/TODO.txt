@@ -1,0 +1,45 @@
+TODO:
+code:
+- setup git repo
+- enemy moving towards the player
+- UI (score & HP)
+- spawn enemies randomly (with random movement types)
+- homing missiles
+- meteorites
+- sound effects
+- explosion on hit
+
+art:
+- explosion animation
+
+
+DAY 3
+code:
+- enemy moving forward
+- enemy dying on hit
+- player dying on hit
+- enemy moving following a pattern
+- enemy shooting
+- parallax background
+art:
+- spaceship v2
+- projectile 
+- enemy ship v2
+- enemy projectile
+- background(s)
+
+DAY 2
+art:
+- spaceship
+- projectile
+code:
+- shooting
+- colliders outside of the sceen
+
+DAY 1
+art:
+- spaceship
+code:
+- player spaceship
+- movement
+- screen boundaries
