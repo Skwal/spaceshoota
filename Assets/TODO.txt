@@ -1,17 +1,12 @@
 TODO:
-- name the project
-- setup trello board
 code:
-- change direction of enemies going out of the screen
 - drops (money, powerups)
-- enemy moving towards the player
 - homing missiles
 - meteorites
 - sound effects
 - explosion on hit
 - game menu
 - high score
-- game over
 
 art:
 - meteorites
@@ -20,6 +15,14 @@ art:
 - more ship parts
 
 
+
+DAY 6
+code:
+- change direction of enemies going out of the screen
+- enemy moving towards the player
+- game paused
+- game over
+- kill count
 
 
 DAY 5

@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    GameState gameState;
-    float spawnTimer = 5;
-        
-    void Start()
+    private GameState gameState;
+    private float spawnTimer = 5;
+
+    private void Start()
     {
         gameState = GameObject.FindObjectOfType<GameState>();
     }
 
-    void SpawnEnemy(int type)
+    private void SpawnEnemy(int type)
     {
         GameObject enemy;
 

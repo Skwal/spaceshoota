@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     // spaceship properties
     public float speed; // minimum 5, maximum 15?
+
     public float playerWidth; // 1
     public float weaponCooldown = 0.5f;
-    float cooldownTimer = 0;
-
-    public float playerHealth = 3;
+    private float cooldownTimer = 0;
 
     public GameObject projectilePrefab;
-    GameState gameState;
-
-
-    public Text UIHealthText;
+    private GameState gameState;
 
     private void Start()
     {
@@ -27,17 +19,15 @@ public class PlayerController : MonoBehaviour
             gameState = GameObject.FindObjectOfType<GameState>();
     }
 
-    void Update()
+    private void Update()
     {
         MoveShip();
         Shoot();
 
-        UIHealthText.text = "Health: " + playerHealth.ToString();
-
-        if (playerHealth <= 0)
+        if (gameState.playerHealth <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("GAME OVER!");
+            Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
         }
     }
 
@@ -56,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void MoveShip()
+    private void MoveShip()
     {
         // Movement
         float screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
@@ -74,10 +64,9 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("OUCH");
-        playerHealth--;
+        gameState.playerHealth--;
     }
 }
