@@ -1,27 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     // enemy properties
     public float speed = 1f;
-    public float movType = 1f;
     public float weaponCooldown = 1f;
     public float health = 1f;
     public float points = 10f;
+    public MovType movType;
 
     public GameObject projectilePrefab;
     float cooldownTimer = 0;
+    float movChangeTimer = 2f;
        
-    GameState gameState;   
+    GameState gameState;
+    GameObject player;
+    float screenWidth;
 
+    public enum MovType
+    {
+        Straight,
+        Right,
+        Left,
+        TowardsPlayer
+    }
 
     void Start()
     {
         projectilePrefab.layer = 9;
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
+
+        screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        RandomizeMovType();
+    }
+
+    private void RandomizeMovType()
+    {
+        var rnd = new System.Random();
+        movType = (MovType)Random.Range(0, 3);
     }
 
     // Update is called once per frame
@@ -58,23 +77,61 @@ public class EnemyController : MonoBehaviour
 
     void Move()
     {
-        if (movType == 2)
+        movChangeTimer -= Time.deltaTime;
+
+        // change randomly
+        if (movChangeTimer <= 0)
         {
-            transform.Translate(new Vector3(-speed * Time.deltaTime, speed * Time.deltaTime, 0));
+            RandomizeMovType();
+            movChangeTimer = Random.Range(3, 6);
         }
-        else if (movType == 3)
+
+        // invert movType at end of the screen
+        if (transform.position.x > screenWidth && movType == MovType.Right)
+            movType = MovType.Left;
+        if (transform.position.x < -screenWidth && movType == MovType.Left)
+            movType = MovType.Right;
+
+
+        switch (movType)
         {
-            transform.Translate(new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, 0));
-        }
-        else
-        {
-            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+            case MovType.Right:
+                GoDiagonalRight();
+                break;
+            case MovType.Left:
+                GoDiagonalLeft();
+                break;
+            case MovType.TowardsPlayer:
+                GoTowardsPlayer();
+                break;
+            case MovType.Straight:
+            default:
+                GoStraight();
+                break;
         }
 
     }
 
-    void setMovType(int type)
+    private void GoTowardsPlayer()
     {
-        movType = type;
+        if (player.transform.position.x > transform.position.x)
+            transform.Translate(new Vector3(-speed * Time.deltaTime, speed * Time.deltaTime, 0));
+        if (player.transform.position.x < transform.position.x)
+            transform.Translate(new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, 0));
+    }
+
+    private void GoDiagonalRight()
+    {
+        transform.Translate(new Vector3(-speed / 2 * Time.deltaTime, speed * Time.deltaTime, 0));
+    }
+
+    private void GoDiagonalLeft()
+    {
+        transform.Translate(new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, 0));
+    }
+
+    private void GoStraight()
+    {
+        transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
     }
 }
