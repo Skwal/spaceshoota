@@ -1,17 +1,31 @@
 TODO:
 - name the project
+- setup trello board
 code:
-- spawn enemies randomly (with random movement types)
-- money
+- change direction of enemies going out of the screen
+- drops (money, powerups)
 - enemy moving towards the player
 - homing missiles
 - meteorites
 - sound effects
 - explosion on hit
-- drops (powerups)
+- game menu
+- high score
+- game over
 
 art:
+- meteorites
 - explosion animation
+- more enemies
+- more ship parts
+
+
+
+
+DAY 5
+code:
+- find a cool font
+- spawn enemies randomly (with random movement types)
 
 
 DAY 4
@@ -42,7 +56,7 @@ art:
 - projectile
 code:
 - shooting
-- colliders outside of the sceen
+- colliders outside of the screen
 
 DAY 1
 art:

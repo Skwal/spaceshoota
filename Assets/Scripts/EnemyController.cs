@@ -72,4 +72,9 @@ public class EnemyController : MonoBehaviour
         }
 
     }
+
+    void setMovType(int type)
+    {
+        movType = type;
+    }
 }
