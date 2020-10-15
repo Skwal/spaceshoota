@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameState
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: GameElements
     uniqueID: 2034156115
+    locked: 0
+  - name: UI
+    uniqueID: 4203418539
     locked: 0

@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    // enemy properties
     public float speed = 1f;
     public float movType = 1f;
+    public float weaponCooldown = 1f;
+    public float health = 1f;
+    public float points = 10f;
 
     public GameObject projectilePrefab;
-    public float weaponCooldown = 1f;
     float cooldownTimer = 0;
+       
+    GameState gameState;   
 
-    public float health = 1f;
-    // Start is called before the first frame update
+
     void Start()
     {
         projectilePrefab.layer = 9;
+        if (gameState == null)
+            gameState = GameObject.FindObjectOfType<GameState>();
     }
 
     // Update is called once per frame
@@ -28,13 +34,13 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            gameState.ScorePoints(points);
         }
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit");
         health--;
     }
 
@@ -65,5 +71,10 @@ public class EnemyController : MonoBehaviour
             transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
         }
 
+    }
+
+    void setMovType(int type)
+    {
+        movType = type;
     }
 }
