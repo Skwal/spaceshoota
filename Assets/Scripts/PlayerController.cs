@@ -21,13 +21,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        MoveShip();
-        Shoot();
-
-        if (gameState.playerHealth <= 0)
+        if (gameState.currentState == GameState.State.Playing)
         {
-            Destroy(gameObject);
-            Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
+            MoveShip();
+            Shoot();
+
+            if (gameState.playerHealth <= 0)
+            {
+                Destroy(gameObject);
+                Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
+            }
         }
     }
 

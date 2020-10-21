@@ -1,18 +1,33 @@
 TODO:
 code:
+- pause screen - quit/restart
 - drops (money, powerups)
 - homing missiles
 - meteorites
 - sound effects
 - explosion on hit
-- game menu
 - high score
+- settings - resolution
+- build
+- rename folder/repo/etc
+
 
 art:
 - meteorites
+- drops (money, powerups)
 - explosion animation
 - more enemies
 - more ship parts
+
+
+DAY 8
+code:
+- main menu - new game
+
+
+DAY 7
+code:
+- main menu part 1
 
 
 
