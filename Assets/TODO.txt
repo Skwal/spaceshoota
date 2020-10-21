@@ -1,14 +1,12 @@
 TODO:
 code:
-- pause screen - quit/restart
 - drops (money, powerups)
 - homing missiles
 - meteorites
 - sound effects
 - explosion on hit
-- high score
+- high scores
 - settings - resolution
-- build
 - rename folder/repo/etc
 
 
@@ -23,6 +21,10 @@ art:
 DAY 8
 code:
 - main menu - new game
+- main menu - exit game
+- pause screen - quit
+- game over screen back to menu
+- first build
 
 
 DAY 7

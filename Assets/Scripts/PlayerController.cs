@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
             if (gameState.playerHealth <= 0)
             {
-                Destroy(gameObject);
+                gameObject.transform.position = new Vector3(0, -5.6f, 0);
                 Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
             }
         }
@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
             // shoot
             if (cooldownTimer <= 0)
             {
-                Instantiate(projectilePrefab, transform.position, transform.rotation);
+                GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+                projectile.tag = "Projectile";
                 cooldownTimer = weaponCooldown;
             }
         }

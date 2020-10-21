@@ -70,7 +70,8 @@ public class EnemyController : MonoBehaviour
         // shoot
         if (cooldownTimer <= 0)
         {
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            projectile.tag = "Projectile";
             cooldownTimer = weaponCooldown;
         }
     }

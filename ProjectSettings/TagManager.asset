@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GameState
   - MainMenu
+  - PauseMenu
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX

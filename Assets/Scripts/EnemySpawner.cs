@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
+        enemy.tag = "Enemy";
         SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>();
         enemySprite.sortingLayerName = "GameElements";
 
