@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
     public float speed = 10f;
 
-    void Update()
+    private void Update()
     {
         transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
     }

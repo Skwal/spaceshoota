@@ -1,26 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    GameState gameState;
-        
-    void Start()
+    private GameState gameState;
+    private float spawnTimer = 5;
+
+    private void Start()
     {
         gameState = GameObject.FindObjectOfType<GameState>();
-        StartCoroutine(spawnEnemies());
     }
 
-    IEnumerator spawnEnemies()
-    {
-        yield return new WaitForSeconds(2);
-
-        spawnEnemy(1);
-        StartCoroutine(spawnEnemies());
-    }
-
-    void spawnEnemy(int type)
+    private void SpawnEnemy(int type)
     {
         GameObject enemy;
 
@@ -32,14 +22,22 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
+        enemy.tag = "Enemy";
         SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>();
         enemySprite.sortingLayerName = "GameElements";
 
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, 180));
 
-        EnemyController controller = enemy.GetComponent<EnemyController>();
-        controller.movType = Random.Range(1, 4);
-
         Instantiate(enemy, new Vector3(Random.Range(-4.0f, 4.0f), 6, 0), q);
+    }
+
+    private void Update()
+    {
+        spawnTimer -= Time.deltaTime;
+        if (spawnTimer <= 0)
+        {
+            SpawnEnemy(1);
+            spawnTimer = Random.Range(3, 6);
+        }
     }
 }

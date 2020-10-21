@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    float imgHeight;
-    float posY;
+    private float imgHeight;
+    private float posY;
     public float parallaxSpeed;
-    
-    void Start()
+
+    private void Start()
     {
         posY = transform.position.y;
         imgHeight = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    
-    void Update()
+    private void Update()
     {
         transform.Translate(new Vector3(0, -parallaxSpeed * Time.deltaTime, 0));
 
