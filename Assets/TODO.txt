@@ -1,21 +1,36 @@
 TODO:
 code:
-- drops (money, powerups)
-- homing missiles
+- drops (money, powerups, missiles)
 - meteorites
 - sound effects
 - explosion on hit
 - high scores
-- settings - resolution
-- rename folder/repo/etc
+- locking on target for homing missiles
+- UI - show number of missiles
+- UI - Settings (resolution, sounds, etc.)
+- Shields
 
 
 art:
 - meteorites
 - drops (money, powerups)
-- explosion animation
 - more enemies
 - more ship parts
+
+
+DAY 10
+code:
+- homing missiles - part2
+- settings page (display controls)
+art:
+- explosion animation
+
+DAY 9
+code:
+- rename folder/repo/etc
+- homing missiles - part1
+art:
+- missiles
 
 
 DAY 8

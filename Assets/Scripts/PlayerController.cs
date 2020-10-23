@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
     public float playerWidth; // 1
     public float weaponCooldown = 0.5f;
     private float cooldownTimer = 0;
+    public float numMissiles = 3f;
 
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab, missilePrefab;
     private GameState gameState;
 
     private void Start()
     {
         projectilePrefab.layer = 8;
+        missilePrefab.layer = 8;
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
     }
@@ -36,17 +38,22 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetButton("Fire1"))
-        {
-            cooldownTimer -= Time.deltaTime;
+        cooldownTimer -= Time.deltaTime;
 
-            // shoot
-            if (cooldownTimer <= 0)
-            {
-                GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                projectile.tag = "Projectile";
-                cooldownTimer = weaponCooldown;
-            }
+        // Shoot laser
+        if (Input.GetButton("Fire1") && cooldownTimer <= 0)
+        {
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            projectile.tag = "Projectile";
+            cooldownTimer = weaponCooldown;
+        }
+
+        // Shoot Missile
+        if (Input.GetButton("Fire2") && cooldownTimer <= 0)
+        {
+            GameObject projectile = Instantiate(missilePrefab, transform.position, transform.rotation);
+            projectile.tag = "Projectile";
+            cooldownTimer = weaponCooldown;
         }
     }
 

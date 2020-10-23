@@ -7,7 +7,7 @@ public class GameState : MonoBehaviour
     public float kills;
     public Text uiScoreText, uiTimerText, uiHealthText;
 
-    public GameObject player, mainMenu, pauseMenu, gameOverMenu;
+    public GameObject player, mainMenu, pauseMenu, gameOverMenu, settingsMenu;
     public float playerHealth;
 
     public State currentState;
@@ -129,8 +129,15 @@ public class GameState : MonoBehaviour
         mainMenu.SetActive(true);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         currentState = State.MainMenu;
         Time.timeScale = 0;
+    }
+
+    public void SettingsMenu()
+    {
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 
     private void ResetGame()
