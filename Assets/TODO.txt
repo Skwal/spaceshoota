@@ -21,6 +21,7 @@ art:
 DAY 10
 code:
 - homing missiles - part2
+- settings page (display controls)
 art:
 - explosion animation
 
