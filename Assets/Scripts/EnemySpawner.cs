@@ -22,13 +22,16 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
+        Renderer enemySpriteSize = enemy.GetComponent<Renderer>();
+        float enemyHeight = enemySpriteSize.bounds.size.y;
+
         enemy.tag = "Enemy";
         SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>();
         enemySprite.sortingLayerName = "GameElements";
 
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, 180));
 
-        Instantiate(enemy, new Vector3(Random.Range(-4.0f, 4.0f), 6, 0), q);
+        Instantiate(enemy, new Vector3(Random.Range(-4.0f, 4.0f), 5 + enemyHeight/2, 0), q);
     }
 
     private void Update()
