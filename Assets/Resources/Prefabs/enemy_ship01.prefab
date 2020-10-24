@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 794045761243684123}
   - component: {fileID: 2087335062032721039}
   - component: {fileID: 5079915238293777283}
+  - component: {fileID: 6229482555017850242}
+  - component: {fileID: 3100094489124167829}
+  - component: {fileID: 8497223406245532476}
   m_Layer: 9
   m_Name: enemy_ship01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,10 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  movType: 2
   weaponCooldown: 0.5
-  health: 1
   points: 10
+  movType: 2
   projectilePrefab: {fileID: 2942037395843588231, guid: d5543557eef521746be12f8e46850c45,
     type: 3}
 --- !u!114 &5079915238293777283
@@ -165,3 +167,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749dadf690400cf42ae99c27ae98712b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6229482555017850242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794045761243684102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c2933c3b45b53409c52af40c501738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSprite: 1
+  explosionPrefab: {fileID: 6556765325109002714, guid: e2806f2695e722546af6640f52351709,
+    type: 3}
+--- !u!114 &3100094489124167829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794045761243684102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351598dc735014c449f1bee3a4cb0c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+--- !u!114 &8497223406245532476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794045761243684102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e6b4f9345e9f946917b6ceef07ba02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50

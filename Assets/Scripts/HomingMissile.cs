@@ -6,9 +6,11 @@ public class HomingMissile : MonoBehaviour
     public float rotSpeed = 50f;
 
     public Transform nearestEnemy;
+    private Health health;
 
     private void Start()
     {
+        health = gameObject.GetComponent<Health>();
     }
 
     private void Update()
@@ -28,6 +30,14 @@ public class HomingMissile : MonoBehaviour
         }
 
         transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+    }
+
+    private void LateUpdate()
+    {
+        if (health.currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private Transform GetClosestEnemy(GameObject[] enemies)

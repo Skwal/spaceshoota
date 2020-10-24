@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
@@ -8,7 +9,6 @@ public class GameState : MonoBehaviour
     public Text uiScoreText, uiTimerText, uiHealthText;
 
     public GameObject player, mainMenu, pauseMenu, gameOverMenu, settingsMenu;
-    public float playerHealth;
 
     public State currentState;
 
@@ -20,7 +20,7 @@ public class GameState : MonoBehaviour
         GameOver
     }
 
-    private float startingHealth = 3f;
+    private Health playerHealth;
 
     private void Start()
     {
@@ -33,10 +33,13 @@ public class GameState : MonoBehaviour
         kills = 0;
 
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = startingHealth;
+        playerHealth = player.GetComponent<Health>();
 
         if (mainMenu == null)
             mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+
+        // temp
+        StartGame();
     }
 
     public void StartGame()
@@ -80,18 +83,30 @@ public class GameState : MonoBehaviour
 
         if (currentState == State.Playing)
         {
-            if (playerHealth == 0)
-            {
-                currentState = State.GameOver;
-                Time.timeScale = 0;
-                gameOverMenu.SetActive(true);
-            }
-
             timer += Time.deltaTime;
 
             uiScoreText.text = "Score: " + score.ToString();
             uiTimerText.text = "Time: " + Mathf.Floor(timer).ToString();
-            uiHealthText.text = "Health: " + playerHealth.ToString();
+            uiHealthText.text = "Health: " + playerHealth.currentHealth.ToString();
+        }
+    }
+
+    private IEnumerator ShowGameOverAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Time.timeScale = 0;
+        gameOverMenu.SetActive(true);
+    }
+
+    private void LateUpdate()
+    {
+        if (currentState == State.Playing)
+        {
+            if (playerHealth.currentHealth == 0)
+            {
+                currentState = State.GameOver;
+                StartCoroutine(ShowGameOverAfterDelay(1f));
+            }
         }
     }
 
@@ -159,7 +174,7 @@ public class GameState : MonoBehaviour
         timer = 0;
         kills = 0;
 
-        playerHealth = startingHealth;
+        playerHealth.RecoverHealth(playerHealth.maxHealth);
     }
 
     public void ScorePoints(float points)

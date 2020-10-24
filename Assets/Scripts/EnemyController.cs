@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
     public float speed = 1f;
 
     public float weaponCooldown = 1f;
-    public float health = 1f;
     public float points = 10f;
     public MovType movType;
 
@@ -17,6 +16,8 @@ public class EnemyController : MonoBehaviour
     private GameState gameState;
     private GameObject player;
     private float screenWidth;
+
+    private Health enemyHealth;
 
     public enum MovType
     {
@@ -32,6 +33,8 @@ public class EnemyController : MonoBehaviour
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
 
+        enemyHealth = gameObject.GetComponent<Health>();
+
         screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -44,23 +47,20 @@ public class EnemyController : MonoBehaviour
         movType = (MovType)Random.Range(0, 3);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Move();
         Shoot();
+    }
 
-        if (health <= 0)
+    private void LateUpdate()
+    {
+        if (enemyHealth.currentHealth <= 0)
         {
             Destroy(gameObject);
             gameState.ScorePoints(points);
             gameState.kills++;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        health--;
     }
 
     private void Shoot()

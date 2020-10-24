@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6291764298940363596}
   - component: {fileID: 7949268724822514395}
   - component: {fileID: 8264656872493618642}
+  - component: {fileID: 2165561061254844842}
+  - component: {fileID: -3215647656865591884}
   m_Layer: 9
   m_Name: projectile02
   m_TagString: Untagged
@@ -170,3 +172,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6700c3095769eea478cf3da3d968a3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2165561061254844842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2942037395843588231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351598dc735014c449f1bee3a4cb0c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  currentHealth: 0
+--- !u!114 &-3215647656865591884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2942037395843588231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e6b4f9345e9f946917b6ceef07ba02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

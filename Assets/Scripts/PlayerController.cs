@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab, missilePrefab;
     private GameState gameState;
+    private Health playerHealth;
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
         missilePrefab.layer = 8;
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
+
+        playerHealth = gameObject.GetComponent<Health>();
     }
 
     private void Update()
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
             MoveShip();
             Shoot();
 
-            if (gameState.playerHealth <= 0)
+            if (playerHealth.currentHealth <= 0)
             {
                 gameObject.transform.position = new Vector3(0, -5.6f, 0);
                 Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
@@ -73,11 +76,5 @@ public class PlayerController : MonoBehaviour
             pos.x += translation;
 
         transform.position = pos;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("OUCH");
-        gameState.playerHealth--;
     }
 }

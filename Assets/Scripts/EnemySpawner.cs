@@ -3,7 +3,7 @@
 public class EnemySpawner : MonoBehaviour
 {
     private GameState gameState;
-    private float spawnTimer = 5;
+    private float spawnTimer = 2;
 
     private void Start()
     {
