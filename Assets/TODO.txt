@@ -1,21 +1,10 @@
-TODO:
-code:
-- drops (money, powerups, missiles)
-- meteorites
-- sound effects
-- explosion on hit
-- high scores
-- locking on target for homing missiles
-- UI - show number of missiles
-- UI - Settings (resolution, sounds, etc.)
-- Shields
+TODO: https://trello.com/b/s438HIIO/spaceshoota
 
+
+DAY 11
 
 art:
-- meteorites
-- drops (money, powerups)
-- more enemies
-- more ship parts
+- explosion animation improvement
 
 
 DAY 10
