@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c2933c3b45b53409c52af40c501738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSprite: 1
+  scaleSprite: 2
   explosionPrefab: {fileID: 6556765325109002714, guid: e2806f2695e722546af6640f52351709,
     type: 3}
 --- !u!114 &3100094489124167829

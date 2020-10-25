@@ -9,7 +9,7 @@ public class ExplodesOnDeath : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.GetComponent<Health>().currentHealth == 0 && cooldown < 0)
+        if (gameObject.GetComponent<Health>().currentHealth == 0 && cooldown <= 0)
         {
             Explode();
             cooldown = 5f;

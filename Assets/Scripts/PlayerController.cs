@@ -30,12 +30,15 @@ public class PlayerController : MonoBehaviour
         {
             MoveShip();
             Shoot();
+        }
+    }
 
-            if (playerHealth.currentHealth <= 0)
-            {
-                gameObject.transform.position = new Vector3(0, -5.6f, 0);
-                Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
-            }
+    private void LateUpdate()
+    {
+        if (playerHealth.currentHealth <= 0)
+        {
+            gameObject.transform.position = new Vector3(0, -5.6f, 0);
+            Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
         }
     }
 
