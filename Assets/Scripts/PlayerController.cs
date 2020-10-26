@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         if (playerHealth.currentHealth <= 0)
         {
             gameObject.transform.position = new Vector3(0, -5.6f, 0);
-            Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
+            //Debug.Log("GAME OVER! " + gameState.kills.ToString() + " kills!");
         }
     }
 

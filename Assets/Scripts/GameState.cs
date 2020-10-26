@@ -39,7 +39,7 @@ public class GameState : MonoBehaviour
             mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
 
         // temp
-        StartGame();
+        //StartGame();
     }
 
     public void StartGame()

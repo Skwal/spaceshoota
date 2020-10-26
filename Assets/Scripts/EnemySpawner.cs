@@ -16,22 +16,26 @@ public class EnemySpawner : MonoBehaviour
 
         switch (type)
         {
+            case 2:
+                enemy = (GameObject)Resources.Load("Prefabs/asteroid0" + Random.Range(1, 3), typeof(GameObject));
+                break;
+
             case 1:
             default:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship01", typeof(GameObject));
+                enemy.tag = "Enemy";
                 break;
         }
 
-        Renderer enemySpriteSize = enemy.GetComponent<Renderer>();
-        float enemyHeight = enemySpriteSize.bounds.size.y;
+        SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>() == null ? enemy.GetComponentInChildren<SpriteRenderer>() : enemy.GetComponent<SpriteRenderer>();
 
-        enemy.tag = "Enemy";
-        SpriteRenderer enemySprite = enemy.GetComponent<SpriteRenderer>();
+        float enemyHeight = enemySprite.bounds.size.y;
+
         enemySprite.sortingLayerName = "GameElements";
 
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, 180));
 
-        Instantiate(enemy, new Vector3(Random.Range(-4.0f, 4.0f), 5 + enemyHeight/2, 0), q);
+        Instantiate(enemy, new Vector3(Random.Range(-4.0f, 4.0f), 5 + enemyHeight / 2, 0), q);
     }
 
     private void Update()
@@ -39,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {
-            SpawnEnemy(1);
+            SpawnEnemy(Random.Range(1, 4));
             spawnTimer = Random.Range(3, 6);
         }
     }
