@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
     public float score, timer;
     public float kills;
-    public Text uiScoreText, uiTimerText, uiHealthText;
 
-    public GameObject player, mainMenu, pauseMenu, gameOverMenu, settingsMenu;
+    public GameObject player, pauseMenu, gameOverMenu;
 
     public State currentState;
 
@@ -20,74 +19,58 @@ public class GameState : MonoBehaviour
         GameOver
     }
 
-    private Health playerHealth;
+    public Health playerHealth;
 
-    private void Start()
+    private bool created = false;
+
+    private void Awake()
     {
+        GameObject[] multiGS = GameObject.FindGameObjectsWithTag("GameState");
+        Debug.Log(multiGS.Length.ToString());
+        if (multiGS.Length > 1)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
         currentState = State.MainMenu;
-
         Time.timeScale = 0;
-
-        score = 0;
-        timer = 0;
-        kills = 0;
-
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<Health>();
-
-        if (mainMenu == null)
-            mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-
-        // temp
-        //StartGame();
-    }
-
-    public void StartGame()
-    {
-        PlayGame();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentState == State.MainMenu)
+            switch (currentState)
             {
-                QuitGame();
-            }
-            else if (currentState == State.Playing)
-            {
-                PauseGame();
-            }
-            else if (currentState == State.Paused)
-            {
-                PlayGame();
-            }
-            else if (currentState == State.GameOver)
-            {
-                QuitToMainMenu();
+                case State.MainMenu:
+                    QuitGame();
+                    break;
+
+                case State.Playing:
+                    PauseGame();
+                    break;
+
+                case State.Paused:
+                    UnpauseGame();
+                    break;
+
+                case State.GameOver:
+                    QuitToMainMenu();
+                    break;
             }
         }
 
         if (currentState == State.Paused)
         {
             if (Input.GetKeyDown(KeyCode.Y))
-            {
                 QuitToMainMenu();
-            }
             else if (Input.GetKeyDown(KeyCode.N))
-            {
-                PlayGame();
-            }
+                UnpauseGame();
         }
 
         if (currentState == State.Playing)
         {
             timer += Time.deltaTime;
-
-            uiScoreText.text = "Score: " + score.ToString();
-            uiTimerText.text = "Time: " + Mathf.Floor(timer).ToString();
-            uiHealthText.text = "Health: " + playerHealth.currentHealth.ToString();
         }
     }
 
@@ -118,11 +101,34 @@ public class GameState : MonoBehaviour
         currentState = State.Paused;
     }
 
+    private void UnpauseGame()
+    {
+        Debug.Log("UnpauseGame!");
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        currentState = State.Playing;
+    }
+
+    public void StartNewGame()
+    {
+        Debug.Log("StartNewGame!");
+        SceneManager.LoadScene("Level01");
+
+        score = 0;
+        timer = 0;
+        kills = 0;
+    }
+
     public void PlayGame()
     {
-        Debug.Log("PlayGame!");
-        mainMenu.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<Health>();
+
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         pauseMenu.SetActive(false);
+        gameOverMenu = GameObject.FindGameObjectWithTag("GameOverMenu");
+        gameOverMenu.SetActive(false);
+
         currentState = State.Playing;
         Time.timeScale = 1;
 
@@ -141,18 +147,16 @@ public class GameState : MonoBehaviour
     {
         Debug.Log("QuitToMainMenu!");
         ResetGame();
-        mainMenu.SetActive(true);
-        pauseMenu.SetActive(false);
-        gameOverMenu.SetActive(false);
-        settingsMenu.SetActive(false);
         currentState = State.MainMenu;
         Time.timeScale = 0;
-    }
 
-    public void SettingsMenu()
-    {
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(true);
+        // needed?
+        pauseMenu = null;
+        gameOverMenu = null;
+        player = null;
+        playerHealth = null;
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void ResetGame()
