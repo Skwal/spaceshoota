@@ -3,14 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | SpaceShoota</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/webbuild.json", {onProgress: UnityProgress});
-    </script>
+    <title>Unity WebGL SpaceShoota</title>
+    <link rel="shortcut icon" href="webbuild/TemplateData/favicon.ico">
+	<style type="text/css">	
+	/* vt323-regular - latin */
+	@font-face {
+	  font-family: 'VT323';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url('./fonts/vt323-v12-latin-regular.eot'); /* IE9 Compat Modes */
+	  src: local('VT323 Regular'), local('VT323-Regular'),
+		   url('./fonts/vt323-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		   url('./fonts/vt323-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		   url('./fonts/vt323-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+		   url('./fonts/vt323-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		   url('./fonts/vt323-v12-latin-regular.svg#VT323') format('svg'); /* Legacy iOS */
+	}
+
+	body {
+		font-family: 'VT323';
+		position: relative;
+	}
+
+	header {
+		width: 960px;
+		margin: 0 auto;
+	}
+
+	.game-preview {
+		width: 960px;
+		margin: 0 auto;
+	}
+
+	footer {
+		width: 960px;
+		margin: 0 auto;
+	}
+	ul {
+		margin: 0;
+	}
+	h4 {
+		margin: 5px 0 0;
+	}
+	</style>
   </head>
   <body>
   	<header>
@@ -21,51 +56,54 @@
   			Left Alt or Right Mouse Button to launch homing missiles (currently unlimited).
   		</p>
   	</header>
-    <div class="webgl-content">
-      <div id="unityContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">SpaceShoota</div>
-      </div>
+    <div class="game-preview">
+      <iframe src="webbuild/index.html" width="960" height="643" style="border:none;"></iframe>
     </div>
     <footer>
-    	<h3>Changelog</h3>
+    	<h2>Changelog</h2>
+		
+    	<h3 style="color: blue">v0.0.2</h3>
+
+    	<h4>DAY 14</h4>
+    	<ul>
+			<li>Scene Management (refactor of GameState)</li>
+    	</ul>
+
+    	<h4>DAY 13</h4>
+    	<ul>
+			<li>Art - drops (part2)</li>
+    	</ul>
+
+    	<h4>DAY 12</h4>
+    	<ul>
+			<li>Changed font (Thanks to Roligt1998)</li>
+			<li>Fixed player explosion</li>
+			<li>Asteroids</li>
+			<li>Art - asteroids, projectiles v2, drops (started)</li>
+    	</ul>
+
     	<h4>DAY 11</h4>
-    	code:
     	<ul>
     		<li>Health Component</li>
     		<li>Explosion on collision</li>
-    	</ul>
-		art:
-    	<ul>
-			<li>Explosion animation improvement</li>
+			<li>Art - Explosion animation improvement</li>
     	</ul>
 
     	<h4>DAY 10</h4>
-    	code:
     	<ul>
     		<li>homing missiles - part2</li>
     		<li>settings page (display controls)</li>
-    	</ul>
-		art:
-    	<ul>
-			<li>Explosion animation</li>
+			<li>Art - Explosion animation</li>
     	</ul>
 
     	<h4>DAY 9</h4>
-    	code:
     	<ul>
     		<li>Renamed folder/repo/etc.</li>
     		<li>Homing missiles - part1</li>
-    	</ul>
-		art:
-    	<ul>
-			<li>Homing missiles</li>
+			<li>Art - Homing missiles</li>
     	</ul>
 
     	<h4>DAY 8</h4>
-    	code:
     	<ul>
     		<li>main menu - new game</li>
     		<li>main menu - exit game</li>
@@ -75,13 +113,11 @@
     	</ul>
 
     	<h4>DAY 7</h4>
-    	code:
     	<ul>
     		<li>main menu part 1</li>
     	</ul>
 
     	<h4>DAY 6</h4>
-    	code:
     	<ul>
     		<li>change direction of enemies going out of the screen</li>
     		<li>enemy moving towards the player</li>
@@ -91,14 +127,12 @@
     	</ul>
 
     	<h4>DAY 5</h4>
-    	code:
     	<ul>
     		<li>find a cool font</li>
     		<li>spawn enemies randomly (with random movement types)</li>
     	</ul>
 
     	<h4>DAY 4</h4>
-    	code:
     	<ul>
     		<li>setup git repo</li>
     		<li>UI (score & HP)</li>
@@ -106,7 +140,6 @@
     	</ul>
 
     	<h4>DAY 3</h4>
-    	code:
     	<ul>
     		<li>enemy moving forward</li>
     		<li>enemy dying on hit</li>
@@ -114,39 +147,31 @@
     		<li>enemy moving following a pattern</li>
     		<li>enemy shooting</li>
     		<li>parallax background</li>
-    	</ul>
-		art:
-    	<ul>
-			<li>spaceship v2</li>
-			<li>projectile</li>
-			<li>enemy ship v2</li>
-			<li>enemy projectile</li>
-			<li>background(s)</li>
+			<li>Art - spaceship v2</li>
+			<li>Art - projectile</li>
+			<li>Art - enemy ship v2</li>
+			<li>Art - enemy projectile</li>
+			<li>Art - background(s)</li>
     	</ul>
 
     	<h4>DAY 2</h4>
-    	code:
     	<ul>
     		<li>shooting</li>
     		<li>colliders outside of the screen</li>
-    	</ul>
-		art:
-    	<ul>
-			<li>spaceship</li>
-			<li>projectile</li>
+			<liArt - >spaceship</li>
+			<li>Art - projectile</li>
     	</ul>
 
     	<h4>DAY 1</h4>
-    	code:
     	<ul>
     		<li>player spaceship</li>
     		<li>movement</li>
     		<li>screen boundaries</li>
+			<li>Art - spaceship prototype</li>
     	</ul>
-		art:
-    	<ul>
-			<li>spaceship prototype</li>
-    	</ul>
+
+		
+    	<h3 style="color: blue">v0.0.1</h3>
     </footer>
   </body>
 </html>
