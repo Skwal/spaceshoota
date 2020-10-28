@@ -29,7 +29,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        projectilePrefab.layer = 9;
+        projectilePrefab.layer = 11;
+
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
 

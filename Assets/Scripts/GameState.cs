@@ -21,12 +21,11 @@ public class GameState : MonoBehaviour
 
     public Health playerHealth;
 
-    private bool created = false;
 
     private void Awake()
     {
         GameObject[] multiGS = GameObject.FindGameObjectsWithTag("GameState");
-        Debug.Log(multiGS.Length.ToString());
+
         if (multiGS.Length > 1)
             Destroy(gameObject);
 
