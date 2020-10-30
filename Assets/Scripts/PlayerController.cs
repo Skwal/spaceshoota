@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        projectilePrefab.layer = 8;
+        projectilePrefab.layer = 10;
         missilePrefab.layer = 8;
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
