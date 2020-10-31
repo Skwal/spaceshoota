@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  weaponCooldown: 0.5
+  weaponCooldown: 1
   points: 10
   movType: 2
   projectilePrefab: {fileID: 2942037395843588231, guid: d5543557eef521746be12f8e46850c45,

@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
     // enemy properties
     public float speed = 1f;
 
-    public float weaponCooldown = 1f;
+    public float weaponCooldown = 2f;
     public float points = 10f;
     public MovType movType;
 
@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             gameState.ScorePoints(points);
-            gameState.kills++;
+            gameState.enemyKilled++;
         }
     }
 

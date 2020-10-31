@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour
 {
     public float score, timer;
-    public float kills;
+
+    // stats
+    public int enemyKilled;
+
+    public int objectsDestroyed;
 
     public GameObject player, pauseMenu, gameOverMenu;
 
@@ -20,7 +24,6 @@ public class GameState : MonoBehaviour
     }
 
     public Health playerHealth;
-
 
     private void Awake()
     {
@@ -115,7 +118,8 @@ public class GameState : MonoBehaviour
 
         score = 0;
         timer = 0;
-        kills = 0;
+        enemyKilled = 0;
+        objectsDestroyed = 0;
     }
 
     public void PlayGame()
@@ -175,7 +179,8 @@ public class GameState : MonoBehaviour
 
         score = 0;
         timer = 0;
-        kills = 0;
+        enemyKilled = 0;
+        objectsDestroyed = 0;
 
         playerHealth.RecoverHealth(playerHealth.maxHealth);
     }
