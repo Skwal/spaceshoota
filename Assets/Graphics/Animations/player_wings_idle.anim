@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player
+  m_Name: player_wings_idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,6 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 916576428498066608, guid: a42c2e56ada3bd445af9f36a6fb1603c,
-        type: 3}
-    - time: 0.083333336
-      value: {fileID: 665913733054636975, guid: 6b615a464e2cc7e4e9bcdd34857617e6,
-        type: 3}
-    - time: 0.16666667
-      value: {fileID: -7427163371782145293, guid: 36c4d2573e2102e4998aa4c691479691,
-        type: 3}
-    - time: 0.25
       value: {fileID: 1756014624248169, guid: 9d7b9e5682f5c0c49b245f0e34c744a4, type: 3}
     attribute: m_Sprite
     path: 
@@ -49,21 +40,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 916576428498066608, guid: a42c2e56ada3bd445af9f36a6fb1603c, type: 3}
-    - {fileID: 665913733054636975, guid: 6b615a464e2cc7e4e9bcdd34857617e6, type: 3}
-    - {fileID: -7427163371782145293, guid: 36c4d2573e2102e4998aa4c691479691, type: 3}
     - {fileID: 1756014624248169, guid: 9d7b9e5682f5c0c49b245f0e34c744a4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
