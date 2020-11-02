@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
     // enemy properties
     public float speed = 1f;
 
-    public float weaponCooldown = 1f;
+    public float weaponCooldown = 2f;
     public float points = 10f;
     public MovType movType;
 
@@ -18,6 +18,15 @@ public class EnemyController : MonoBehaviour
     private float screenWidth;
 
     private Health enemyHealth;
+
+    private enum AnimationState
+    {
+        Idle,
+        Left,
+        Right
+    }
+
+    AnimationState currentAnim = AnimationState.Idle;
 
     public enum MovType
     {
@@ -60,7 +69,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             gameState.ScorePoints(points);
-            gameState.kills++;
+            gameState.enemyKilled++;
         }
     }
 
@@ -125,16 +134,33 @@ public class EnemyController : MonoBehaviour
 
     private void GoDiagonalRight()
     {
+        if (currentAnim != AnimationState.Right)
+        {
+            GetComponent<Animator>().SetTrigger("Tilt");
+            transform.localScale = new Vector3(1, 1, 1);
+            currentAnim = AnimationState.Right;
+        }
         transform.Translate(new Vector3(-speed / 2 * Time.deltaTime, speed * Time.deltaTime, 0));
     }
 
     private void GoDiagonalLeft()
     {
+        if (currentAnim != AnimationState.Left)
+        {
+            GetComponent<Animator>().SetTrigger("Tilt");
+            transform.localScale = new Vector3(-1, 1, 1);
+            currentAnim = AnimationState.Left;
+        }
         transform.Translate(new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, 0));
     }
 
     private void GoStraight()
     {
+        if (currentAnim != AnimationState.Idle)
+        {
+            GetComponent<Animator>().SetTrigger("Idle");
+            currentAnim = AnimationState.Idle;
+        }
         transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
     }
 }

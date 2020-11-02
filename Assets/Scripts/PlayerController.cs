@@ -9,10 +9,20 @@ public class PlayerController : MonoBehaviour
     public float weaponCooldown = 0.5f;
     private float cooldownTimer = 0;
     public float numMissiles = 3f;
+    public Vector3 projectileOffset = new Vector3(0, 0.4f, 0);
 
     public GameObject projectilePrefab, missilePrefab;
     private GameState gameState;
     private Health playerHealth;
+
+    private enum AnimationState
+    {
+        Idle,
+        Left,
+        Right
+    }
+
+    AnimationState currentAnim = AnimationState.Idle;
 
     private void Start()
     {
@@ -49,7 +59,7 @@ public class PlayerController : MonoBehaviour
         // Shoot laser
         if (Input.GetButton("Fire1") && cooldownTimer <= 0)
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, transform.position + projectileOffset, transform.rotation);
             projectile.tag = "Projectile";
             cooldownTimer = weaponCooldown;
         }
@@ -57,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // Shoot Missile
         if (Input.GetButton("Fire2") && cooldownTimer <= 0)
         {
-            GameObject projectile = Instantiate(missilePrefab, transform.position, transform.rotation);
+            GameObject projectile = Instantiate(missilePrefab, transform.position + projectileOffset, transform.rotation);
             projectile.tag = "Projectile";
             cooldownTimer = weaponCooldown;
         }
@@ -69,6 +79,34 @@ public class PlayerController : MonoBehaviour
         float screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
         Vector3 pos = transform.position;
         float translation = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+
+        // Animation
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            if (currentAnim != AnimationState.Left)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("Tilt");
+                transform.localScale = new Vector3(1, 1, 1);
+                currentAnim = AnimationState.Left;
+            }
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            if (currentAnim != AnimationState.Right)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("Tilt");
+                transform.localScale = new Vector3(-1, 1, 1);
+                currentAnim = AnimationState.Right;
+            }
+        }
+        else
+        {
+            if (currentAnim != AnimationState.Idle)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("Idle");
+                currentAnim = AnimationState.Idle;
+            }
+        }
 
         // Screen boundaries
         if (pos.x + translation > screenWidth - playerWidth / 2)

@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 50
+  points: 6
 --- !u!114 &6289614762802382501
 MonoBehaviour:
   m_ObjectHideFlags: 0
