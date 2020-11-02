@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float weaponCooldown = 0.5f;
     private float cooldownTimer = 0;
     public float numMissiles = 3f;
-    public Vector3 projectileOffset = new Vector3(0, 1f, 0);
+    public Vector3 projectileOffset = new Vector3(0, 0.4f, 0);
 
     public GameObject projectilePrefab, missilePrefab;
     private GameState gameState;
