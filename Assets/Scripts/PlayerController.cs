@@ -84,22 +84,28 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0)
         {
             if (currentAnim != AnimationState.Left)
+            {
                 GetComponentInChildren<Animator>().SetTrigger("Tilt");
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            currentAnim = AnimationState.Left;
+                transform.localScale = new Vector3(1, 1, 1);
+                currentAnim = AnimationState.Left;
+            }
         }
         else if (Input.GetAxis("Horizontal") > 0)
         {
             if (currentAnim != AnimationState.Right)
+            {
                 GetComponentInChildren<Animator>().SetTrigger("Tilt");
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            currentAnim = AnimationState.Right;
+                transform.localScale = new Vector3(-1, 1, 1);
+                currentAnim = AnimationState.Right;
+            }
         }
         else
         {
             if (currentAnim != AnimationState.Idle)
+            {
                 GetComponentInChildren<Animator>().SetTrigger("Idle");
-            currentAnim = AnimationState.Idle;
+                currentAnim = AnimationState.Idle;
+            }
         }
 
         // Screen boundaries

@@ -14,9 +14,6 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject enemy;
 
-
-        //type = 2;
-
         switch (type)
         {
             case 2:
