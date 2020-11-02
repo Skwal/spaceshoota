@@ -16,10 +16,12 @@ public class EnemySpawner : MonoBehaviour
 
         switch (type)
         {
-            case 2:
+            case 3:
                 enemy = (GameObject)Resources.Load("Prefabs/asteroid0" + Random.Range(1, 3), typeof(GameObject));
                 break;
-
+            case 2:
+                enemy = (GameObject)Resources.Load("Prefabs/enemy_ship03", typeof(GameObject));
+                break;
             case 1:
             default:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship01", typeof(GameObject));
@@ -43,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {
-            SpawnEnemy(Random.Range(1, 4));
+            SpawnEnemy(Random.Range(1, 3));
             spawnTimer = Random.Range(3, 6);
         }
     }
