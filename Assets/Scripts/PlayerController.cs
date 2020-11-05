@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         Right
     }
 
-    AnimationState currentAnim = AnimationState.Idle;
+    private AnimationState currentAnim = AnimationState.Idle;
 
     private void Start()
     {

@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     private float screenWidth;
 
     private Health enemyHealth;
+    private GameObject particleExplosion;
 
     private enum AnimationState
     {
@@ -48,6 +49,8 @@ public class EnemyController : MonoBehaviour
         screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
         player = GameObject.FindGameObjectWithTag("Player");
 
+        particleExplosion = (GameObject)Resources.Load("Prefabs/ParticleExplosion", typeof(GameObject));
+
         RandomizeMovType();
     }
 
@@ -61,6 +64,12 @@ public class EnemyController : MonoBehaviour
     {
         Move();
         Shoot();
+
+        if (enemyHealth.currentHealth <= 0)
+        {
+            GameObject explo = Instantiate(particleExplosion, transform.position, transform.rotation);
+            Destroy(explo, 2f);
+        }
     }
 
     private void LateUpdate()
