@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cf803acf9370a439d4e1f9bf842b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 50
   points: 8
 --- !u!114 &7380509181003424622
 MonoBehaviour:
