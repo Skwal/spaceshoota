@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab, missilePrefab;
     private GameState gameState;
     private Health playerHealth;
+    private GameObject particleExplosion;
 
     private enum AnimationState
     {
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
             gameState = GameObject.FindObjectOfType<GameState>();
 
         playerHealth = gameObject.GetComponent<Health>();
+        particleExplosion = (GameObject)Resources.Load("Prefabs/ParticleExplosion", typeof(GameObject));
     }
 
     private void Update()
@@ -40,6 +42,12 @@ public class PlayerController : MonoBehaviour
         {
             MoveShip();
             Shoot();
+
+            if (playerHealth.currentHealth <= 0)
+            {
+                GameObject explo = Instantiate(particleExplosion, transform.position, transform.rotation);
+                Destroy(explo, 2f);
+            }
         }
     }
 
