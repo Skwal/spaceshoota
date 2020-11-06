@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     public float weaponCooldown = 2f;
     public float points = 10f;
     public MovType movType;
+    public ShootType shootType;
+    public float projectileOffsetY = 0.4f;
 
     public GameObject projectilePrefab;
     private float cooldownTimer = 0;
@@ -18,6 +20,7 @@ public class EnemyController : MonoBehaviour
     private float screenWidth;
 
     private Health enemyHealth;
+    private GameObject particleExplosion;
 
     private enum AnimationState
     {
@@ -26,7 +29,7 @@ public class EnemyController : MonoBehaviour
         Right
     }
 
-    AnimationState currentAnim = AnimationState.Idle;
+    private AnimationState currentAnim = AnimationState.Idle;
 
     public enum MovType
     {
@@ -34,6 +37,14 @@ public class EnemyController : MonoBehaviour
         Right,
         Left,
         TowardsPlayer
+    }
+
+    public enum ShootType
+    {
+        Straight,
+        Double,
+        Cone,
+        Triple
     }
 
     private void Start()
@@ -48,12 +59,13 @@ public class EnemyController : MonoBehaviour
         screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
         player = GameObject.FindGameObjectWithTag("Player");
 
-        RandomizeMovType();
+        particleExplosion = (GameObject)Resources.Load("Prefabs/ParticleExplosion", typeof(GameObject));
+
+        //RandomizeMovType();
     }
 
     private void RandomizeMovType()
     {
-        var rnd = new System.Random();
         movType = (MovType)Random.Range(0, 3);
     }
 
@@ -61,6 +73,12 @@ public class EnemyController : MonoBehaviour
     {
         Move();
         Shoot();
+
+        if (enemyHealth.currentHealth <= 0)
+        {
+            GameObject explo = Instantiate(particleExplosion, transform.position, transform.rotation);
+            Destroy(explo, 2f);
+        }
     }
 
     private void LateUpdate()
@@ -80,10 +98,47 @@ public class EnemyController : MonoBehaviour
         // shoot
         if (cooldownTimer <= 0)
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-            projectile.tag = "Projectile";
+            if (shootType == ShootType.Triple)
+                ShootTriple();
+            else if (shootType == ShootType.Cone)
+                ShootCone();
+            else if (shootType == ShootType.Double)
+                ShootDouble();
+            else
+                ShootStraight();
+
             cooldownTimer = weaponCooldown;
         }
+    }
+
+    private void ShootStraight()
+    {
+        GameObject projectile = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
+        projectile.tag = "Projectile";
+    }
+
+    private void ShootDouble()
+    {
+        GameObject projectile1 = Instantiate(projectilePrefab, new Vector3(transform.position.x - 0.2f, transform.position.y - projectileOffsetY), transform.rotation);
+        projectile1.tag = "Projectile";
+        GameObject projectile2 = Instantiate(projectilePrefab, new Vector3(transform.position.x + 0.2f, transform.position.y - projectileOffsetY), transform.rotation);
+        projectile2.tag = "Projectile";
+    }
+
+    private void ShootCone()
+    {
+        GameObject projectile1 = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
+        projectile1.transform.Rotate(new Vector3(0, 0, 5f));
+        projectile1.tag = "Projectile";
+        GameObject projectile2 = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
+        projectile2.transform.Rotate(new Vector3(0, 0, -5f));
+        projectile2.tag = "Projectile";
+    }
+
+    private void ShootTriple()
+    {
+        ShootStraight();
+        ShootCone();
     }
 
     private void Move()
@@ -91,7 +146,7 @@ public class EnemyController : MonoBehaviour
         movChangeTimer -= Time.deltaTime;
 
         // change randomly
-        if (movChangeTimer <= 0)
+        if (movChangeTimer <= 0 && movType != MovType.TowardsPlayer)
         {
             RandomizeMovType();
             movChangeTimer = Random.Range(3, 6);
