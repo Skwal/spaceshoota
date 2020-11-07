@@ -74,6 +74,9 @@ public class GameState : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
+        if (currentState == State.GameOver && Input.GetButton("Fire1"))
+            QuitToMainMenu();
     }
 
     private IEnumerator ShowGameOverAfterDelay(float delay)

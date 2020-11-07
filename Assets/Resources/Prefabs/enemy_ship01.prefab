@@ -152,11 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  weaponCooldown: 1
   points: 10
-  movType: 2
+  movType: 1
+  weaponCooldown: 1
+  shootingPattern: 0
+  projectileOffsetY: 0.4
   projectilePrefab: {fileID: 2942037395843588231, guid: d5543557eef521746be12f8e46850c45,
     type: 3}
+  projectileType: 0
 --- !u!114 &5079915238293777283
 MonoBehaviour:
   m_ObjectHideFlags: 0

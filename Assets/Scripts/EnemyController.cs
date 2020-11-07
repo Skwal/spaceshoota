@@ -5,14 +5,16 @@ public class EnemyController : MonoBehaviour
     // enemy properties
     public float speed = 1f;
 
-    public float weaponCooldown = 2f;
     public float points = 10f;
     public MovType movType;
-    public ShootType shootType;
-    public float projectileOffsetY = 0.4f;
 
-    public GameObject projectilePrefab;
+    public float weaponCooldown = 2f;
+    public ShootingPattern shootingPattern;
+    public float projectileOffsetY = 0.4f;
+    private GameObject projectilePrefab;
     private float cooldownTimer = 0;
+    public ProjectileType projectileType;
+
     private float movChangeTimer = 2f;
 
     private GameState gameState;
@@ -39,7 +41,7 @@ public class EnemyController : MonoBehaviour
         TowardsPlayer
     }
 
-    public enum ShootType
+    public enum ShootingPattern
     {
         Straight,
         Double,
@@ -47,9 +49,15 @@ public class EnemyController : MonoBehaviour
         Triple
     }
 
+    public enum ProjectileType
+    {
+        Red,
+        Green,
+        Blue
+    }
+
     private void Start()
     {
-        projectilePrefab.layer = 11;
 
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
@@ -61,7 +69,21 @@ public class EnemyController : MonoBehaviour
 
         particleExplosion = (GameObject)Resources.Load("Prefabs/ParticleExplosion", typeof(GameObject));
 
-        //RandomizeMovType();
+        switch (projectileType)
+        {
+            case ProjectileType.Blue:
+                projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile04", typeof(GameObject));
+                break;
+            case ProjectileType.Green:
+                projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile03", typeof(GameObject));
+                break;
+            case ProjectileType.Red:
+            default:
+                projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile02", typeof(GameObject));
+                break;
+        }
+
+        projectilePrefab.layer = 11;
     }
 
     private void RandomizeMovType()
@@ -98,11 +120,11 @@ public class EnemyController : MonoBehaviour
         // shoot
         if (cooldownTimer <= 0)
         {
-            if (shootType == ShootType.Triple)
+            if (shootingPattern == ShootingPattern.Triple)
                 ShootTriple();
-            else if (shootType == ShootType.Cone)
+            else if (shootingPattern == ShootingPattern.Cone)
                 ShootCone();
-            else if (shootType == ShootType.Double)
+            else if (shootingPattern == ShootingPattern.Double)
                 ShootDouble();
             else
                 ShootStraight();
