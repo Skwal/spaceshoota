@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Health playerHealth;
     private GameObject particleExplosion;
 
+    private GameObject shields;
+
     private enum AnimationState
     {
         Idle,
@@ -34,6 +36,9 @@ public class PlayerController : MonoBehaviour
 
         playerHealth = gameObject.GetComponent<Health>();
         particleExplosion = (GameObject)Resources.Load("Prefabs/ParticleExplosion", typeof(GameObject));
+
+        shields = GameObject.FindGameObjectWithTag("Shields");
+        shields.SetActive(true);
     }
 
     private void Update()
