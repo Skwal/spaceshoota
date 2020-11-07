@@ -22,29 +22,33 @@ public class EnemySpawner : MonoBehaviour
         {
             case 4:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship04", typeof(GameObject));
-                enemy.GetComponent<EnemyController>().shootType = EnemyController.ShootType.Triple;
+                enemy.GetComponent<EnemyController>().shootingPattern = EnemyController.ShootingPattern.Triple;
                 enemy.GetComponent<EnemyController>().weaponCooldown = 4f;
                 enemy.GetComponent<EnemyController>().movType = EnemyController.MovType.TowardsPlayer;
+                enemy.GetComponent<EnemyController>().projectileType = EnemyController.ProjectileType.Blue;
                 break;
 
             case 3:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship03", typeof(GameObject));
-                enemy.GetComponent<EnemyController>().shootType = EnemyController.ShootType.Double;
+                enemy.GetComponent<EnemyController>().shootingPattern = EnemyController.ShootingPattern.Double;
                 enemy.GetComponent<EnemyController>().weaponCooldown = 3f;
                 enemy.GetComponent<EnemyController>().movType = EnemyController.MovType.TowardsPlayer;
+                enemy.GetComponent<EnemyController>().projectileType = EnemyController.ProjectileType.Red;
                 break;
 
             case 2:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship02", typeof(GameObject));
-                enemy.GetComponent<EnemyController>().shootType = EnemyController.ShootType.Cone;
+                enemy.GetComponent<EnemyController>().shootingPattern = EnemyController.ShootingPattern.Cone;
                 enemy.GetComponent<EnemyController>().weaponCooldown = 2.5f;
                 enemy.GetComponent<EnemyController>().movType = (EnemyController.MovType)Random.Range(0, 3);
+                enemy.GetComponent<EnemyController>().projectileType = EnemyController.ProjectileType.Green;
                 break;
 
             case 1:
                 enemy = (GameObject)Resources.Load("Prefabs/enemy_ship01", typeof(GameObject));
-                enemy.GetComponent<EnemyController>().shootType = EnemyController.ShootType.Straight;
+                enemy.GetComponent<EnemyController>().shootingPattern = EnemyController.ShootingPattern.Straight;
                 enemy.GetComponent<EnemyController>().movType = (EnemyController.MovType)Random.Range(0, 3);
+                enemy.GetComponent<EnemyController>().projectileType = EnemyController.ProjectileType.Red;
                 break;
 
             case 0:
