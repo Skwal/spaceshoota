@@ -86,7 +86,8 @@ public class PlayerController : MonoBehaviour
         // Movement
         float screenWidth = Camera.main.orthographicSize * (float)Screen.width / (float)Screen.height;
         Vector3 pos = transform.position;
-        float translation = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float translationY = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
         // Animation
         if (Input.GetAxis("Horizontal") < 0)
@@ -117,12 +118,19 @@ public class PlayerController : MonoBehaviour
         }
 
         // Screen boundaries
-        if (pos.x + translation > screenWidth - playerWidth / 2)
+        if (pos.x + translationX > screenWidth - playerWidth / 2)
             pos.x = screenWidth - playerWidth / 2;
-        else if (pos.x + translation < -screenWidth + playerWidth / 2)
+        else if (pos.x + translationX < -screenWidth + playerWidth / 2)
             pos.x = -screenWidth + playerWidth / 2;
         else
-            pos.x += translation;
+            pos.x += translationX;
+
+        if (pos.y + translationY > Camera.main.orthographicSize - playerWidth / 2)
+            pos.y = Camera.main.orthographicSize - playerWidth / 2;
+        else if (pos.y + translationY < -Camera.main.orthographicSize + playerWidth / 2)
+            pos.y = -Camera.main.orthographicSize + playerWidth / 2;
+        else
+            pos.y += translationY;
 
         transform.position = pos;
     }
