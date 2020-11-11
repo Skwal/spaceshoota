@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public float playerWidth; // 1
     public float weaponCooldown = 0.5f;
     private float cooldownTimer = 0;
-    public float numMissiles = 3f;
+    public int numMissiles = 3;
+    public int maxMissiles = 5;
     public Vector3 projectileOffset = new Vector3(0, 0.4f, 0);
 
     public GameObject projectilePrefab, missilePrefab;
@@ -78,11 +79,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Shoot Missile
-        if (Input.GetButton("Fire2") && cooldownTimer <= 0)
+        if (Input.GetButton("Fire2") && cooldownTimer <= 0 && numMissiles > 0)
         {
             GameObject projectile = Instantiate(missilePrefab, transform.position + projectileOffset, transform.rotation);
             projectile.tag = "Projectile";
             cooldownTimer = weaponCooldown;
+
+            numMissiles--;
         }
     }
 
