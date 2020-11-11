@@ -9,8 +9,8 @@ public class GamePlayManager : MonoBehaviour
 
     public GameObject healthBar, shieldsBar, missilesBar, player;
 
-    Health playerHealth, shieldsHealth;
-    int numMissiles, maxMissiles;
+    private Health playerHealth, shieldsHealth;
+    private int numMissiles, maxMissiles;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class GamePlayManager : MonoBehaviour
 
         gameState.PlayGame();
 
-        DisplayHealthBar(); 
+        DisplayHealthBar();
         DisplayShieldsBar();
         DisplayMissilesBar();
     }
@@ -46,9 +46,11 @@ public class GamePlayManager : MonoBehaviour
 
     private void DisplayMissilesBar()
     {
+        numMissiles = player.GetComponent<PlayerController>().numMissiles;
+
         DisplayBar(missilesBar, maxMissiles * 10, numMissiles * 10);
 
-        previousShields = numMissiles;
+        previousMissiles = numMissiles;
     }
 
     private void DisplayBar(GameObject bar, int max, int current)
@@ -80,17 +82,5 @@ public class GamePlayManager : MonoBehaviour
 
         if (player.GetComponent<PlayerController>().numMissiles != previousMissiles)
             DisplayMissilesBar();
-
-        //int numBar = (int)Mathf.Ceil(gameState.playerHealth.currentHealth / 10);
-        //Debug.Log(gameState.playerHealth.currentHealth + " / " + numBar);
-
-        //gameState.playerHealth.currentHealth -= 1;
-
-        //if (uiScoreText != null && gameState.score != 0)
-        //    uiScoreText.text = "SCORE: " + gameState.score.ToString();
-        //if (uiTimerText != null && gameState.timer != 0)
-        //    uiTimerText.text = "TIME: " + Mathf.Floor(gameState.timer).ToString();
-        //if (uiHealthText != null && gameState.playerHealth != null)
-        //    uiHealthText.text = "HULL: " + gameState.playerHealth.currentHealth.ToString();
     }
 }

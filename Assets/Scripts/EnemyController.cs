@@ -56,9 +56,10 @@ public class EnemyController : MonoBehaviour
         Blue
     }
 
+    private GameObject dropHealthPrefab, dropShieldsPrefab, dropMissilesPrefab;
+
     private void Start()
     {
-
         if (gameState == null)
             gameState = GameObject.FindObjectOfType<GameState>();
 
@@ -74,14 +75,20 @@ public class EnemyController : MonoBehaviour
             case ProjectileType.Blue:
                 projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile04", typeof(GameObject));
                 break;
+
             case ProjectileType.Green:
                 projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile03", typeof(GameObject));
                 break;
+
             case ProjectileType.Red:
             default:
                 projectilePrefab = (GameObject)Resources.Load("Prefabs/projectile02", typeof(GameObject));
                 break;
         }
+
+        dropHealthPrefab = (GameObject)Resources.Load("Prefabs/Drops/drop_health", typeof(GameObject));
+        dropShieldsPrefab = (GameObject)Resources.Load("Prefabs/Drops/drop_shields", typeof(GameObject));
+        dropMissilesPrefab = (GameObject)Resources.Load("Prefabs/Drops/drop_missiles", typeof(GameObject));
 
         projectilePrefab.layer = 11;
     }
@@ -107,6 +114,14 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyHealth.currentHealth <= 0)
         {
+            int rand = Random.Range(0, 100);
+            if (rand < 20)
+                Instantiate(dropHealthPrefab, transform.position, transform.rotation);
+            else if (rand < 40)
+                Instantiate(dropShieldsPrefab, transform.position, transform.rotation);
+            else if (rand < 60)
+                Instantiate(dropMissilesPrefab, transform.position, transform.rotation);
+
             Destroy(gameObject);
             gameState.ScorePoints(points);
             gameState.enemyKilled++;
