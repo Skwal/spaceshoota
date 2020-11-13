@@ -9,6 +9,8 @@ public class GamePlayManager : MonoBehaviour
 
     public GameObject healthBar, shieldsBar, missilesBar, player;
 
+    public Text gameStatsText;
+
     private Health playerHealth, shieldsHealth;
     private int numMissiles, maxMissiles;
 
@@ -72,6 +74,15 @@ public class GamePlayManager : MonoBehaviour
         barBgRight.rectTransform.anchoredPosition = pos;
     }
 
+    private void updateGameStats()
+    {
+        gameStatsText.text = "Score: " + gameState.score + "\n" +
+                            "Money: " + gameState.money + "\n" +
+                            "Timer: " + gameState.timer + "s\n" +
+                            "Ships Destroyed: " + gameState.enemyKilled + "\n" +
+                            "Asteroids Destroyed: " + gameState.objectsDestroyed + "";
+    }
+
     private void Update()
     {
         if (playerHealth.currentHealth != previousHealth)
@@ -82,5 +93,8 @@ public class GamePlayManager : MonoBehaviour
 
         if (player.GetComponent<PlayerController>().numMissiles != previousMissiles)
             DisplayMissilesBar();
+
+        if (gameState.currentState == GameState.State.GameOver)
+            updateGameStats();
     }
 }

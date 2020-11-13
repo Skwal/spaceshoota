@@ -8,7 +8,7 @@ public class DealsDamageOnCollision : MonoBehaviour
     {
         if (collision != null && collision.gameObject.GetComponent<Health>() != null)
         {
-            Debug.Log("Deals " + damage + " damage: " + gameObject + " to " + collision);
+            //Debug.Log("Deals " + damage + " damage: " + gameObject + " to " + collision);
             collision.gameObject.GetComponent<Health>().TakeDamage(damage);
         }
         else
