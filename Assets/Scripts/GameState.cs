@@ -4,12 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
-    public float score, timer;
+    public float timer;
 
     // stats
-    public int enemyKilled;
-
-    public int objectsDestroyed;
+    public int enemyKilled, objectsDestroyed, score, money;
 
     public GameObject player, pauseMenu, gameOverMenu;
 
@@ -123,6 +121,7 @@ public class GameState : MonoBehaviour
         timer = 0;
         enemyKilled = 0;
         objectsDestroyed = 0;
+        money = 0;
     }
 
     public void PlayGame()
@@ -184,11 +183,12 @@ public class GameState : MonoBehaviour
         timer = 0;
         enemyKilled = 0;
         objectsDestroyed = 0;
+        money = 0;
 
         playerHealth.RecoverHealth(playerHealth.maxHealth);
     }
 
-    public void ScorePoints(float points)
+    public void ScorePoints(int points)
     {
         score += points;
     }

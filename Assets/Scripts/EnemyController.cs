@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
     // enemy properties
     public float speed = 1f;
 
-    public float points = 10f;
+    public int points = 10;
     public MovType movType;
 
     public float weaponCooldown = 2f;

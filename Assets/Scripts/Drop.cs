@@ -14,10 +14,12 @@ public class Drop : MonoBehaviour
     }
 
     private GameObject player;
+    GameState gameState;
     private Health playerHealth, shieldsHealth;
 
     private void Start()
     {
+        gameState = GameObject.FindObjectOfType<GameState>();
         player = GameObject.FindGameObjectWithTag("Player");
 
         playerHealth = player.GetComponent<Health>();
@@ -26,8 +28,6 @@ public class Drop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Drop picked up!");
-
         switch (dropType)
         {
             case DropTypes.Health:
@@ -42,6 +42,10 @@ public class Drop : MonoBehaviour
                 player.GetComponent<PlayerController>().numMissiles += 2;
                 if (player.GetComponent<PlayerController>().numMissiles > player.GetComponent<PlayerController>().maxMissiles)
                     player.GetComponent<PlayerController>().numMissiles = player.GetComponent<PlayerController>().maxMissiles;
+                break;
+
+            case DropTypes.Money:
+                gameState.money += 10;
                 break;
         }
     }
