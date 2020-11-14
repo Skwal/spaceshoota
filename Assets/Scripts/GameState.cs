@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
-    public float score, timer;
+    public float timer;
 
     // stats
-    public int enemyKilled;
-
-    public int objectsDestroyed;
+    public int enemyKilled, objectsDestroyed, score, money;
 
     public GameObject player, pauseMenu, gameOverMenu;
 
     public State currentState;
+
+    public int currentDifficulty = 1;
+    private float difficultyCooldown = 20f;
+
+    private float nextDifficultyTimer;
 
     public enum State
     {
@@ -36,6 +40,8 @@ public class GameState : MonoBehaviour
 
         currentState = State.MainMenu;
         Time.timeScale = 0;
+
+        nextDifficultyTimer = difficultyCooldown;
     }
 
     private void Update()
@@ -77,12 +83,20 @@ public class GameState : MonoBehaviour
 
         if (currentState == State.GameOver && Input.GetButton("Fire1"))
             QuitToMainMenu();
+
+        nextDifficultyTimer -= Time.deltaTime;
+        if (nextDifficultyTimer <= 0)
+        {
+            RaiseDifficulty();
+            nextDifficultyTimer = difficultyCooldown;
+        }
     }
 
     private IEnumerator ShowGameOverAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         Time.timeScale = 0;
+
         gameOverMenu.SetActive(true);
     }
 
@@ -123,6 +137,7 @@ public class GameState : MonoBehaviour
         timer = 0;
         enemyKilled = 0;
         objectsDestroyed = 0;
+        money = 0;
     }
 
     public void PlayGame()
@@ -184,12 +199,18 @@ public class GameState : MonoBehaviour
         timer = 0;
         enemyKilled = 0;
         objectsDestroyed = 0;
+        money = 0;
 
         playerHealth.RecoverHealth(playerHealth.maxHealth);
     }
 
-    public void ScorePoints(float points)
+    public void ScorePoints(int points)
     {
         score += points;
+    }
+
+    private void RaiseDifficulty()
+    {
+        currentDifficulty++;
     }
 }

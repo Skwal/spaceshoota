@@ -2,7 +2,7 @@
 
 public class Asteroid : MonoBehaviour
 {
-    public float points = 5f;
+    public int points = 5;
 
     private Health health;
     private GameState gameState;
