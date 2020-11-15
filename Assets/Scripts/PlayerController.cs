@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + projectileOffset, transform.rotation);
             projectile.tag = "Projectile";
+            projectile.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
             cooldownTimer = weaponCooldown;
         }
 
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject projectile = Instantiate(missilePrefab, transform.position + projectileOffset, transform.rotation);
             projectile.tag = "Projectile";
+            projectile.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
             cooldownTimer = weaponCooldown;
 
             numMissiles--;

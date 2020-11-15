@@ -14,9 +14,16 @@ public class GamePlayManager : MonoBehaviour
     private Health playerHealth, shieldsHealth;
     private int numMissiles, maxMissiles;
 
-    private void Start()
+
+    private void Awake()
     {
         gameState = GameObject.FindObjectOfType<GameState>();
+        Debug.Log(PlayerPrefs.GetFloat("Music Volume"));
+        gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music Volume");
+    }
+
+    private void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
 
         playerHealth = player.GetComponent<Health>();

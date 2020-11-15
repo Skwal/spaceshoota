@@ -11,6 +11,10 @@ TagManager:
   - Projectile
   - GameOverMenu
   - Shields
+  - SettingsMenu
+  - BgMusicObject
+  - MusicVolumeSlider
+  - SfxVolumeSlider
   layers:
   - Default
   - TransparentFX

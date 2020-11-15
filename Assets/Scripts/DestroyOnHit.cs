@@ -8,7 +8,6 @@ public class DestroyOnHit : MonoBehaviour
     {
         if (collided)
         {
-            //Debug.Log("Destroyed: " + gameObject.ToString());
             Destroy(gameObject);
         }
     }

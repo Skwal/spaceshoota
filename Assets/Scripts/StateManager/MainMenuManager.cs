@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.StateManager;
+using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject mainMenu, settingsMenu;
+    public GameObject mainMenu, settingsMenu, gameState;
 
-    private void Start()
+    private void Awake()
     {
-    }
-
-    private void Update()
-    {
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
     public void OnClickSettings()

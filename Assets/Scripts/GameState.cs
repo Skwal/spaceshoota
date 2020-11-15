@@ -29,6 +29,8 @@ public class GameState : MonoBehaviour
 
     public Health playerHealth;
 
+    public float musicVolumeValue, sfxVolumeValue;
+
     private void Awake()
     {
         GameObject[] multiGS = GameObject.FindGameObjectsWithTag("GameState");

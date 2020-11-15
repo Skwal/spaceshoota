@@ -1,21 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shields : MonoBehaviour
 {
     private Health health;
 
-    void Start()
+    private void Start()
     {
         health = gameObject.GetComponent<Health>();
     }
 
     private void LateUpdate()
     {
-        if (health.currentHealth <= 0)
-        {
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(health.currentHealth > 0);
     }
 }

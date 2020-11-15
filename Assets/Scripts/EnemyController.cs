@@ -155,14 +155,17 @@ public class EnemyController : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
         projectile.tag = "Projectile";
+        projectile.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
     }
 
     private void ShootDouble()
     {
         GameObject projectile1 = Instantiate(projectilePrefab, new Vector3(transform.position.x - 0.2f, transform.position.y - projectileOffsetY), transform.rotation);
         projectile1.tag = "Projectile";
+        projectile1.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
         GameObject projectile2 = Instantiate(projectilePrefab, new Vector3(transform.position.x + 0.2f, transform.position.y - projectileOffsetY), transform.rotation);
         projectile2.tag = "Projectile";
+        projectile2.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
     }
 
     private void ShootCone()
@@ -170,9 +173,11 @@ public class EnemyController : MonoBehaviour
         GameObject projectile1 = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
         projectile1.transform.Rotate(new Vector3(0, 0, 5f));
         projectile1.tag = "Projectile";
+        projectile1.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
         GameObject projectile2 = Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y - projectileOffsetY), transform.rotation);
         projectile2.transform.Rotate(new Vector3(0, 0, -5f));
         projectile2.tag = "Projectile";
+        projectile2.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
     }
 
     private void ShootTriple()

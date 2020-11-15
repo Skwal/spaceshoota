@@ -22,6 +22,7 @@ public class ExplodesOnDeath : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
         explosion.transform.localScale *= scaleSprite;
+        explosion.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
 
         float delay = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
         Destroy(explosion, delay);
