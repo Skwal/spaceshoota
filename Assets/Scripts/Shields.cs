@@ -11,6 +11,7 @@ public class Shields : MonoBehaviour
 
     private void LateUpdate()
     {
-        gameObject.SetActive(health.currentHealth > 0);
+        gameObject.GetComponent<SpriteRenderer>().enabled = health.currentHealth > 0;
+        gameObject.GetComponent<CircleCollider2D>().enabled = health.currentHealth > 0;
     }
 }

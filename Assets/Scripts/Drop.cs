@@ -48,5 +48,7 @@ public class Drop : MonoBehaviour
                 gameState.money += 10;
                 break;
         }
+
+        player.GetComponent<PlayerController>().PlaySound();
     }
 }

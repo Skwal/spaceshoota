@@ -144,4 +144,15 @@ public class PlayerController : MonoBehaviour
 
         transform.position = pos;
     }
+
+    public void PlaySound()
+    {
+        //Debug.Log(gameObject + " play sound");
+        //gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SFX Volume");
+        //gameObject.GetComponent<AudioSource>().Play();
+
+        Debug.Log("Play collect sound");
+        AudioClip collectSound = (AudioClip)Resources.Load("Audio/SFX/collect");
+        AudioSource.PlayClipAtPoint(collectSound, transform.position, PlayerPrefs.GetFloat("SFX Volume"));
+    }
 }

@@ -4,7 +4,7 @@ public class DestroyOnHit : MonoBehaviour
 {
     private bool collided = false;
 
-    private void Update()
+    private void LateUpdate()
     {
         if (collided)
         {
